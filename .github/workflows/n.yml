@@ -1,0 +1,12 @@
+name: workflowB
+
+on: [push]
+
+needs: workflowA
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run a command
+      run: echo "Workflow B depends on Workflow A"
