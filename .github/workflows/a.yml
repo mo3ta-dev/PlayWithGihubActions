@@ -1,0 +1,11 @@
+name: workflowA
+
+on: [push]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run a command
+      run: echo "Workflow A"
