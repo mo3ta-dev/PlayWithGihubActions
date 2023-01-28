@@ -1,4 +1,4 @@
-name: workflowA
+name: workflowA(revert)
 
 on: 
   - pull_request
@@ -11,11 +11,12 @@ jobs:
     steps:
     - name: Run a command
       run: echo "Workflow A"
+      
+    - name: Echo github object
+      run: echo "${{ toJson(github) }}"
 
     - name: sasasa
-      run: echo "sasa"
-    
-  
+      run: echo "sasa"  
   
   displayData: 
     runs-on: ubuntu-latest
