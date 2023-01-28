@@ -1,4 +1,4 @@
-name: workflowA
+name: workflowA(revert)
 
 on: 
   - pull_request
@@ -12,6 +12,6 @@ jobs:
     steps:
     - name: Run a command
       run: echo "Workflow A"
-
-    - name: sasasa
-      run: echo "sasa"
+      
+    - name: Echo github object
+      run: echo "${{ toJson(github) }}"
