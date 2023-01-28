@@ -4,7 +4,6 @@ on:
   - pull_request
   - pull_request_target 
 
-
 jobs:
   build: 
     runs-on: ubuntu-latest
@@ -15,3 +14,15 @@ jobs:
       
     - name: Echo github object
       run: echo "${{ toJson(github) }}"
+
+    - name: sasasa
+      run: echo "sasa"  
+  
+  displayData: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Echo GitHub object
+      run: echo "$GITHUB_EVENT_PATH"
+      
+    - name: Echo pull_request number
+      run: echo "$(jq '.pull_request.number' $GITHUB_EVENT_PATH)"
