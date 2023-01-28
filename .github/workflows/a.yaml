@@ -15,3 +15,14 @@ jobs:
 
     - name: sasasa
       run: echo "sasa"
+    
+  
+  
+  displayData: 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Echo GitHub object
+      run: echo "$GITHUB_EVENT_PATH"
+      
+    - name: Echo pull_request number
+      run: echo "$(jq '.pull_request.number' $GITHUB_EVENT_PATH)"
