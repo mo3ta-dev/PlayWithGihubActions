@@ -15,15 +15,13 @@ jobs:
       run: echo "Run of kt file"
   job2:
     runs-on: ubuntu-latest
-    if: startsWith(github.head_ref , 'patch')
     steps:
     - name: Run a command
       run: echo "Patch PR"
-    - name: values of hed  
-      run: echo ${{ github.head_ref }}
+    - name: values of hed, head ref   
+      run: echo "header ref ${{ github.head_ref }} ref ${{github.ref}}"
   job3:
     runs-on: ubuntu-latest
-    if: contains(github.event.commits.message , 'patch')
     steps:
     - name: Run a command
       run: echo "Patch PR"
