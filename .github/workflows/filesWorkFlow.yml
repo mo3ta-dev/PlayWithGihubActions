@@ -1,7 +1,8 @@
 name: filesWorkFlow
 
 on: 
-  pull_request:
+  push:
+  pull_request_target:
     paths: 
       - '**/**.kt' 
       - '*.md'
@@ -19,8 +20,10 @@ jobs:
     - name: Run a command
       run: echo "Patch PR"
     - name: values of hed  
-      run: echo {{ $github.head_ref }}
-
-
-filesWorkFlow
-
+      run: echo ${{ github.head_ref }}
+  job3:
+    runs-on: ubuntu-latest
+    if: contains(github.event.commits.message , "patch")
+    steps:
+    - name: Run a command
+      run: echo "Patch PR"
