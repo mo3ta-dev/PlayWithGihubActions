@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Echo GitHub object
-      run: echo "$GITHUB_EVENT_PATH"
+      run: echo "${{ toJson(github) }}"
       
     - name: Echo pull_request number
       run: echo "$(jq '.pull_request.number' $GITHUB_EVENT_PATH)"
