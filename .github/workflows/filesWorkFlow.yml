@@ -1,0 +1,29 @@
+name: filesWorkFlow
+
+on: 
+  push:
+  pull_request_target:
+    paths: 
+      - '**/**.kt' 
+      - '*.md'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run a command
+      run: echo "Run of kt file"
+  job2:
+    runs-on: ubuntu-latest
+    if: startsWith(github.head_ref , 'patch')
+    steps:
+    - name: Run a command
+      run: echo "Patch PR"
+    - name: values of hed  
+      run: echo ${{ github.head_ref }}
+  job3:
+    runs-on: ubuntu-latest
+    if: contains(github.event.commits.message , 'patch')
+    steps:
+    - name: Run a command
+      run: echo "Patch PR"
