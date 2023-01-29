@@ -3,8 +3,8 @@ name: My Kotlin
 on: 
   push: 
     paths:
-      - '**/*.md'
-      - '!**/test/**/*.md'
+      - '**/*.kt'
+      - '!**/test/**/*.kt'
 
 
 jobs:
