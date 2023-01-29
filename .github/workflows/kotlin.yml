@@ -3,7 +3,7 @@ name: My Kotlin
 on: 
   push: 
     paths:
-      - '**/*.kt'
+
       - '!**/test/**'
 
 
