@@ -1,6 +1,9 @@
 name: My Workflow
 
-on: push
+on: 
+  push: 
+    paths: '*.yml'
+  
 
 jobs:
   build:
@@ -9,4 +12,4 @@ jobs:
     steps:
     - name: Get changed files
       run: |
-        echo "Commits: ${{ toJson(github.event.commits) }}"
+        echo "yml"
