@@ -1,0 +1,17 @@
+name: My Workflow
+
+on: 
+  push: 
+    paths:
+      - '**/*.md'
+      - '!**/test/**/*.md'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get changed files
+      run: |
+        echo "md is found but not in test"
