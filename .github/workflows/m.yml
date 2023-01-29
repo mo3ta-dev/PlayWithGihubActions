@@ -1,0 +1,19 @@
+name: My Workflow
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get changed files
+      id: changed_files
+      run: |
+        echo "Commits: ${{ toJson(github.event.commits) }}"
+        changed_files=()
+        for commit in ${{ fromJson(github.event.commits) }}; do
+          changed_files+=("${commit.added[@]}")
+          changed_files+=("${commit.modified[@]}")
+        done
+        echo "Changed files: ${changed_files[@]}"
