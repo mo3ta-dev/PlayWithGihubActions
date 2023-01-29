@@ -2,7 +2,9 @@ name: My Workflow
 
 on: 
   push: 
-    paths-ignore: '**/workflows/*.yml'
+    paths:
+      - '**/workflows/*.yml'
+      - '!**.md'
 
 jobs:
   build:
