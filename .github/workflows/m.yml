@@ -2,8 +2,8 @@ name: My Workflow
 
 on: 
   push: 
-    paths: '**/workflows/*.yml'
-  
+    paths: '**/*.yaml'
+    paths-ignore: '**/workflows/*.yml'
 
 jobs:
   build:
