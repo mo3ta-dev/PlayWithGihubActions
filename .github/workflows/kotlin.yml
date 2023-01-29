@@ -2,9 +2,8 @@ name: My Kotlin
 
 on: 
   push: 
-    paths:
-
-      - '!**/test/**'
+    paths-ignore:
+      - '**/test/**'
 
 
 jobs:
