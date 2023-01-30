@@ -3,7 +3,7 @@ name: My Kotlin
 on: 
   push: 
     paths-ignore:
-      - '**/test/**'
+      - '**/src/*test*/**'
 
 
 
@@ -14,4 +14,4 @@ jobs:
     steps:
     - name: Get changed files
       run: |
-        echo "md is found but not in test"
+        echo "test is found but not in test"
