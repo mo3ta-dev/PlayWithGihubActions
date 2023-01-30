@@ -4,7 +4,10 @@ on:
   push: 
     paths:
       - '**/*.kt'
-      - '!**/src/*[tT]est*/**'
+      - '!**/src/*Test*/**'
+      - '!**/src/*test*/**'
+
+
 
 
 
