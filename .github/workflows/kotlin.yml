@@ -4,7 +4,9 @@ on:
   push: 
     paths:
       - '**/*.kt'
-      - '!**/test/**/*.kt'
+      - '!**/src/*test*/**'
+      - '!**/src/*Test*/**'
+
 
 
 jobs:
@@ -14,4 +16,4 @@ jobs:
     steps:
     - name: Get changed files
       run: |
-        echo "md is found but not in test"
+        echo "test is found but not in test, ${{ github.event.ref}}"
