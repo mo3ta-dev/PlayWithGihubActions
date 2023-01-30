@@ -1,0 +1,14 @@
+name: Simple Workflow
+
+on:
+  push:
+    branches: [ develope ]
+
+jobs:
+  display:
+
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: Display message
+      run: echo hello simple 
