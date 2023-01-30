@@ -3,9 +3,9 @@ name: My Kotlin
 on: 
   push: 
     paths:
-      - '**/src/*test*/**'
-      - '**/src/*Test*/**'
-      
+      - '**/*.kt'
+      - '!**/src/*test*/**'
+      - '!**/src/*Test*/**'
 
 
 
