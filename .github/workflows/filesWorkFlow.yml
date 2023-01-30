@@ -11,12 +11,8 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-    - name: Run a command of  KT only
-      if: contains(github.event.head_commit.added + github.event.head_commit.modified, '*.kt')
+    - name: Run a command
       run: echo "Run of kt file"
-    - name: Run a command of  yml only
-      if: contains(github.event.head_commit.added + github.event.head_commit.modified, '*.yml')
-      run: echo "Run of yml file"
   job2:
     runs-on: ubuntu-latest
     steps:

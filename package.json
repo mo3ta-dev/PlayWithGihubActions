@@ -1,0 +1,27 @@
+{
+  "name": "simpleaction",
+  "version": "1.0.0",
+  "description": "simep action",
+  "main": "index.js",
+  "scripts": {
+    "test": "node dist/index.js",
+    "build": "ncc build index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MahmoudMabrok/dddd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MahmoudMabrok/dddd/issues"
+  },
+  "homepage": "https://github.com/MahmoudMabrok/dddd#readme",
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.36.0"
+  }
+}
