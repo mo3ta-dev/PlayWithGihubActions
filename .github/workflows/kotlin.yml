@@ -16,4 +16,4 @@ jobs:
     steps:
     - name: Get changed files
       run: |
-        echo "test is found but not in test"
+        echo "test is found but not in test, ${{ github.event.ref}}"
