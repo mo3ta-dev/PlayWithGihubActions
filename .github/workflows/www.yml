@@ -2,7 +2,7 @@ name: Simple Workflow
 
 on:
   push:
-    branches: [ develope ]
+    branches: [ main ]
 
 jobs:
   display:
