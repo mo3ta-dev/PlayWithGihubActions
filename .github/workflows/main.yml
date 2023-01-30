@@ -7,6 +7,6 @@ jobs:
     runs-on: ubuntu-latest 
     steps: 
       - name: my action 
-        uses: MahmoudMabrok/ddd@main
+        uses: MahmoudMabrok/dddd@main
         
         
