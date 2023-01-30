@@ -2,7 +2,7 @@ name: My Kotlin
 
 on: 
   push: 
-    paths-ignore:
+    paths:
       - '**/src/*test*/**'
       - '**/src/*Test*/**'
       
