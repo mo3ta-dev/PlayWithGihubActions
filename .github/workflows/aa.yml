@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Merge main into test
+      run: |
+        gh auth login
+        gh pr checkout -b test
+        git merge main
+        git push origin test
+
+    - name: Create pull request
+      run: |
+        gh pr create -B test -h develop -t "Merge develop into test"
