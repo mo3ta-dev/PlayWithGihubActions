@@ -17,9 +17,6 @@ jobs:
     - name: Merge main into test
       run: |
         gh auth login
-        gh pr checkout -b test
-        git merge main
-        git push origin test
 
     - name: Create pull request
       run: |
