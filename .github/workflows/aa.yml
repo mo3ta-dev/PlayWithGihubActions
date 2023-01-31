@@ -14,10 +14,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Merge main into test
-      run: |
-        gh auth login
-
     - name: Create pull request
       run: |
         gh pr create -B test -h develop -t "Merge develop into test"
