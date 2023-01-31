@@ -16,4 +16,4 @@ jobs:
 
     - name: Create pull request
       run: |
-        gh pr create -B test -h develop -t "Merge develop into test"
+        gh pr create -B test -h main -t "Merge develop into test"
