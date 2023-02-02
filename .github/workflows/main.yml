@@ -1,0 +1,12 @@
+name: Test my action 
+
+on: [push]
+
+jobs: 
+  first: 
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: my action 
+        uses: MahmoudMabrok/dddd@main
+        
+        

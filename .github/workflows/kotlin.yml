@@ -1,13 +1,11 @@
 name: My Kotlin
 
 on: 
-  push: 
+  pull_request_target: 
     paths:
       - '**/*.kt'
-      - '!**/src/*test*/**'
       - '!**/src/*Test*/**'
-
-
+      - '!**/src/*test*/**'
 
 jobs:
   build:
@@ -17,3 +15,5 @@ jobs:
     - name: Get changed files
       run: |
         echo "test is found but not in test, ${{ github.event.ref}}"
+        echo "${{ github.event_name }}"
+        echo " json ${{toJson(github.event)}}"

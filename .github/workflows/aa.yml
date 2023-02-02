@@ -1,0 +1,25 @@
+name: CI
+run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: Get changed files
+       id: changed_files
+       run: |
+        COMMIT_RANGE=$(echo ${{ github.sha }}...HEAD)
+        CHANGED_FILES=$(git diff --name-only $COMMIT_RANGE)
+        echo "::set-output name=changed_files::$CHANGED_FILES"
+     - name: Checkout code
+       uses: actions/checkout@v2
+
+     - name: Create pull request
+       run: |
+        gh pr create -B test -h main -t "Merge develop into test"
