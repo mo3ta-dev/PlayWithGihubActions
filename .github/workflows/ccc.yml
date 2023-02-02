@@ -52,7 +52,7 @@ jobs:
         with:
           files: |
             **/*.kt
-          files_ignore: '*' # Alternatively using: `docs`
+          files_ignore: '**/src/test**' # Alternatively using: `docs`
 
       - name: Run step if any other js file(s) change
         if: steps.changed-files-excluded.outputs.any_changed == 'true'
