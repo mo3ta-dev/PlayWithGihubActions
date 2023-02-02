@@ -1,4 +1,4 @@
-name: CI
+name: Chabged 
 
 on:
   # Compare the preceeding commit -> to the current commit of the main branch.
