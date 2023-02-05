@@ -18,6 +18,8 @@ jobs:
 
     - name: Setup detekt
       uses: peter-murray/setup-detekt@v2
+      with:
+          detekt_version: v1.22.0
 
     - name: Run Detekt
       continue-on-error: true
