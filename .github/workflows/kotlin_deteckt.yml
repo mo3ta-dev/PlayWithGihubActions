@@ -1,6 +1,11 @@
 name: Deteckt
 
 on: 
+  push:
+    paths:
+      - '**/*.kt'
+      - '!**/src/*Test*/**'
+      - '!**/src/*test*/**'
   pull_request_target:
     branches: ["main"]
     paths:
@@ -13,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: PPPP 
+      run: echo ${{ github.workspace }}
     - name: checkout code 
       uses: actions/checkout@v3
 
