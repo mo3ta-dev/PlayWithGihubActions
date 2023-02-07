@@ -1,0 +1,21 @@
+name: Updates every minute 
+
+
+on: 
+  schedule:
+    - cron: '* * * * *'
+    
+jobs:
+  action-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Create pull request
+        uses: devops-infra/action-pull-request@v0.5.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: aUTO pr
+          source_branch: test
+          target_branch: main
+          label: auto-mergee
