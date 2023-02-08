@@ -8,7 +8,7 @@ on:
 jobs:
   build: 
     runs-on: ubuntu-latest
-  
+    timeout-minutes: 3
     if: "!startsWith(github.event.pull_request.title, 'revert')"
     
     steps:
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Echo GitHub object
-      run: echo "${{ toJson(github) }}"
+      run: echo "${{ toJson(github.event) }}"
       
     - name: Echo pull_request number
       run: echo "$(jq '.pull_request.number' $GITHUB_EVENT_PATH)"
