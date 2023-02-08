@@ -10,6 +10,7 @@ jobs:
     - name: pull-request
       uses: repo-sync/pull-request@v2
       with:
-        source_branch: ""                                 # If blank, default: triggered branch
-        destination_branch: "master"                      # If blank, default: master
-        pr_title: "Pulling ${{ github.ref }} into master" 
+        source_branch: "test"                                 # If blank, default: triggered branch
+        destination_branch: "main"                      # If blank, default: master
+        pr_title: "Auto PR into main" 
+        pr_label: "auto-merge"
