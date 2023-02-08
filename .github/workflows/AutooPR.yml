@@ -17,4 +17,3 @@ jobs:
         destination_branch: "main"                      # If blank, default: master
         pr_title: "Auto PR into main" 
         pr_label: "auto-merge"
-        github_token: ${{ secrets.GITHUB_TOKEN }}
