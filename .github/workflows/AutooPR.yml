@@ -1,0 +1,15 @@
+name: Auto PR
+on:
+  workflow_dispatch:  
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: ""                                 # If blank, default: triggered branch
+        destination_branch: "master"                      # If blank, default: master
+        pr_title: "Pulling ${{ github.ref }} into master" 
