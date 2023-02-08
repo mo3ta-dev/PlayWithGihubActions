@@ -10,4 +10,4 @@ jobs:
 
     steps:
     - name: Run Something
-      run: echo "This workflow ran on GitHub Actions at $(date)."
+      run: echo "This workflow ran on GitHub Actions at $(date +%Y-%m-%d)"
