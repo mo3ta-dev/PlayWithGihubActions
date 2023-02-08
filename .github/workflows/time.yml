@@ -1,0 +1,13 @@
+name: Run Every 10 Minutes
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+
+jobs:
+  ten-minute-job:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run Something
+      run: echo "This workflow ran on GitHub Actions at $(date)."
