@@ -13,9 +13,6 @@ jobs:
     - name: Run a command
       run: echo "Workflow A"
       if: "!startsWith(github.event.pull_request.title, 'revert')"
-      
-    - name: Echo github object
-      run: echo "${{ toJson(github) }}"
 
     - name: sasasa
       run: echo "sasa"  
