@@ -6,16 +6,13 @@ on:
   - pull_request_target 
 
 jobs:
-  build: 
+  workOnNonRevert: 
     runs-on: ubuntu-latest
-    timeout-minutes: 3
-    if: "!startsWith(github.event.pull_request.title, 'revert')"
     
     steps:
-    - name: sleep 
-      run: sleep 300
     - name: Run a command
       run: echo "Workflow A"
+      if: "!startsWith(github.event.pull_request.title, 'revert')"
       
     - name: Echo github object
       run: echo "${{ toJson(github) }}"
