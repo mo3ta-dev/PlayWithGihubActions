@@ -3,7 +3,8 @@ name: PR
 
 on: 
   schedule:
-    - cron: '* * * * *'
+    - cron: '* 1 *  1 *'
+  workflow_dispatch:  
     
 jobs:
   action-pull-request:
