@@ -8,9 +8,8 @@ on:
 jobs:
   build: 
     runs-on: ubuntu-latest
-    timeout-minutes: 3 
-    
-    if: !startsWith(github.event.pull_request.title, 'revert')
+  
+    if: "!startsWith(github.event.pull_request.title, 'revert')"
     
     steps:
     - name: sleep 
