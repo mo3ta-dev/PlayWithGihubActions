@@ -18,5 +18,5 @@ jobs:
           title: aUTO pr
           source_branch: test
           target_branch: main
-          label: auto-mergee
+          label: auto-merge
           allow_no_diff: true
