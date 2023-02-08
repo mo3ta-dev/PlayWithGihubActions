@@ -19,3 +19,4 @@ jobs:
           source_branch: test
           target_branch: main
           label: auto-mergee
+          allow_no_diff: true
