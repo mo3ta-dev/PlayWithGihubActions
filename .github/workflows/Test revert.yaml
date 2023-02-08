@@ -8,8 +8,13 @@ on:
 jobs:
   build: 
     runs-on: ubuntu-latest
-    if: not startsWith(github.event.pull_request.title, 'revert')
+    timeout-minutes: 3 
+    
+    if: !startsWith(github.event.pull_request.title, 'revert')
+    
     steps:
+    - name: sleep 
+      run: sleep 300
     - name: Run a command
       run: echo "Workflow A"
       
