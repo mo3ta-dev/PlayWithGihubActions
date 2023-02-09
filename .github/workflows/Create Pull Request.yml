@@ -1,25 +1,19 @@
 name: Create Pull Request
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch: 
+  
+permissions: 
+   pull-requests: write   
 
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
+   
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Create branch
-      run: |
-        git checkout -b new-branch
-        echo "new changes" >> new-file.txt
-        git add new-file.txt
-        git commit -m "new changes"
-        git push -u origin new-branch
 
     - name: Create Pull Request
       uses: actions/github-script@v3
