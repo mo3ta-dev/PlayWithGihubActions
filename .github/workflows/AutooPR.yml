@@ -1,0 +1,21 @@
+name: Auto PR
+on:
+  workflow_dispatch:  
+
+
+permissions:
+  contents: read
+  pull-requests: write
+  
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
+      with:
+        source_branch: "test"                                 # If blank, default: triggered branch
+        destination_branch: "main"                      # If blank, default: master
+        pr_title: "Auto PR into main" 
+        pr_label: "auto-merge"
