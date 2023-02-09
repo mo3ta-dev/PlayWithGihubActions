@@ -1,0 +1,44 @@
+name: Create Pull Request
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Create branch
+      run: |
+        git checkout -b new-branch
+        echo "new changes" >> new-file.txt
+        git add new-file.txt
+        git commit -m "new changes"
+        git push -u origin new-branch
+
+    - name: Create Pull Request
+      uses: actions/github-script@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        script: |
+          const octokit = require("@octokit/rest")();
+          octokit.authenticate({
+            type: "token",
+            token: process.env.GITHUB_TOKEN
+          });
+          octokit.pulls.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            head: "new-branch",
+            base: "main",
+            title: "New Pull Request",
+            body: "This pull request contains new changes",
+            labels: ["enhancement", "bugfix"],
+            maintainer_can_modify: true
+          });
