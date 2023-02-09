@@ -1,0 +1,13 @@
+name: My Curl
+
+on: 
+  workflow_dispatch: 
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get changed files
+      run: |
+        curl -sH "Authorization: token ${{secrets.GITHUB_TOKEN}}" "https://github.vodafone.com/api/v3/repos/VFGroup-MyVodafone-OnePlatform/Android-MVA10/pulls/11898/files" | jq '.[] | select(.status == "modified") | .filename'
