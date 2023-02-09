@@ -8,6 +8,8 @@ jobs:
     if: github.event.pull_request.user.login != 'octobot'
     runs-on: ubuntu-latest
     steps:
+      - name: init git 
+        run: git init 
       - name: "Comment about changes we can't accept"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
