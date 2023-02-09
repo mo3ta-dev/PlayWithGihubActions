@@ -1,16 +1,17 @@
-name: Updates every minute 
+name: PR 
 
 
 on: 
   schedule:
-    - cron: '* * * * *'
+    - cron: '* 1 *  1 *'
+  workflow_dispatch:  
     
 jobs:
   action-pull-request:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Create pull request
         uses: devops-infra/action-pull-request@v0.5.3
         with:
@@ -18,5 +19,5 @@ jobs:
           title: aUTO pr
           source_branch: test
           target_branch: main
-          label: auto-mergee
+          label: auto-merge
           allow_no_diff: true
