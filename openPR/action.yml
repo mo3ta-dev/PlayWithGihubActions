@@ -1,0 +1,11 @@
+
+name: 'open PR'
+description: 'Open PR'
+inputs:
+  token:
+    description: 'the token that will be used for the api call'
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+  
