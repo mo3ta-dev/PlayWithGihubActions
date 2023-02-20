@@ -6136,6 +6136,8 @@ const o_head = core.getInput("head");
 
 const { owner, repo } = github.context.repo;
 
+const base_branch = "main";
+
 
 async function brnaches  (){
   console.log('start ');
@@ -6145,8 +6147,9 @@ octokit.rest.repos.listBranches({
   repo: repo
 }).then(({ data }) => {
   // data contains an array of branch objects
-  data.forEach(branch => {
-    console.log('br name: ' + branch.name);
+  const testBranches = data.filter(e => e.startsWith('test'));
+  testBranches.forEach(branch => {
+    doAutoPR(branch , base_branch);
   });
 }).catch(error => {
   console.error(error);
@@ -6155,14 +6158,14 @@ octokit.rest.repos.listBranches({
 };
 
 
-async function doCheck() {
+async function doAutoPR(head_branch, base_branch ) {
 try {
-console.log(' owener ' + owner + ' repo ' + repo + ';;' ); 
+console.log(' owener ' + owner + ' repo ' + repo + '; ' + 'base ' + base_branch  ); 
 const rest = octokit.rest.pulls.create({
   owner, 
   repo, 
-  base: o_base, 
-  head: o_head, 
+  base: base_branch, 
+  head: head_branch, 
   title:'Auto PR' 
 }); 
 
@@ -6172,8 +6175,8 @@ const rest = octokit.rest.pulls.create({
 }
 
 try {
-doCheck(); 
-console.log('done check'); 
+  doAutoPR(); 
+console.log('done PR'); 
 brnaches();
 } catch (error) {
   core.setFailed('error e ' + error)
