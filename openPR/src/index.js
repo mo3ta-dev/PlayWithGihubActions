@@ -21,9 +21,11 @@ octokit.rest.repos.listBranches({
   console.log('data ' + data);
   data.forEach(branch => {
     console.log('data PR  ' + branch);
-    doAutoPR(branch , o_base_branch);
+    if (branch.name.startsWith('test'))
+    doAutoPR(branch.name);
   });
 
+/*
   console.log('filter ');
   const testBranches = data.filter(e => e.startsWith('test'));
   
@@ -31,6 +33,7 @@ octokit.rest.repos.listBranches({
     console.log('testBranches ' + branch);
     doAutoPR(branch);
   });
+  */
 
 }).catch(error => {
   console.error(error);
