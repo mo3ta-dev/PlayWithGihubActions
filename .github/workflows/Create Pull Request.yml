@@ -3,8 +3,9 @@ name: Create Pull Request with code
 on:
   workflow_dispatch: 
   
-# permissions: 
-#   pull-requests: write   
+  
+permissions: 
+  pull-requests: write   
 
 jobs:
   create-pull-request:
