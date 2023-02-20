@@ -9,14 +9,20 @@ const { owner, repo } = github.context.repo;
 
 
 async function brnaches  (){
-
-  const result = await octokit.request('GET /repos/{owner}/{repo}/branches', {
-    owner: owner,
-    repo: repo
+  console.log('start ');
+ // list all branches in a repository
+octokit.rest.repos.listBranches({
+  owner: owner,
+  repo: repo
+}).then(({ data }) => {
+  // data contains an array of branch objects
+  data.forEach(branch => {
+    console.log('br name: ' + branch.name);
   });
+}).catch(error => {
+  console.error(error);
+});
 
-  console.log( result + " result " + result["items"]);
-  
 };
 
 
