@@ -11,16 +11,18 @@ const o_base_branch = "main";
 
 
 async function brnaches  (){
-  console.log('start ');
+  console.log('start ' + o_base_branch);
  // list all branches in a repository
 octokit.rest.repos.listBranches({
   owner: owner,
   repo: repo
 }).then(({ data }) => {
   // data contains an array of branch objects
+  console.log('data ' + data);
   const testBranches = data.filter(e => e.startsWith('test'));
- 
+  
   testBranches.forEach(branch => {
+    console.log('testBranches ' + branch);
     doAutoPR(branch , o_base_branch);
   });
 
@@ -47,8 +49,11 @@ const rest = octokit.rest.pulls.create({
 }
 }
 
+
+// run code 
+
 try {
-  doAutoPR(); 
+doAutoPR(); 
 console.log('done PR'); 
 brnaches();
 } catch (error) {
