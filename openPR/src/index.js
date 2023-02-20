@@ -15,7 +15,7 @@ async function brnaches  (){
     repo: repo
   });
 
-  console.log("result " + result["items"]);
+  console.log( result + " result " + result["items"]);
   
 };
 
