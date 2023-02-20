@@ -6144,7 +6144,7 @@ async function brnaches  (){
     repo: repo
   });
 
-  console.log("result " + result[""])
+  console.log("result " + result["items"]);
   
 };
 
