@@ -1,6 +1,6 @@
 
 name: 'open PR'
-description: 'Checks for android platform'
+description: 'Open PR'
 inputs:
   token:
     description: 'the token that will be used for the api call'

@@ -1,5 +1,5 @@
 {
-  "name": "androidChecks",
+  "name": "open_prs",
   "version": "1.0.0",
   "description": "An action for android checks",
   "main": "index.js",
