@@ -6148,11 +6148,17 @@ octokit.rest.repos.listBranches({
 }).then(({ data }) => {
   // data contains an array of branch objects
   console.log('data ' + data);
+  data.forEach(branch => {
+    console.log('data PR  ' + branch);
+    doAutoPR(branch , o_base_branch);
+  });
+
+  console.log('filter ');
   const testBranches = data.filter(e => e.startsWith('test'));
   
   testBranches.forEach(branch => {
     console.log('testBranches ' + branch);
-    doAutoPR(branch , o_base_branch);
+    doAutoPR(branch);
   });
 
 }).catch(error => {
@@ -6162,13 +6168,13 @@ octokit.rest.repos.listBranches({
 };
 
 
-async function doAutoPR(head_branch, base_branch ) {
+async function doAutoPR(head_branch) {
 try {
-console.log(' owener ' + owner + ' repo ' + repo + '; ' + 'base ' + base_branch  ); 
+console.log(' owener ' + owner + ' repo ' + repo + '; ' + 'head_branch ' + head_branch  ); 
 const rest = octokit.rest.pulls.create({
   owner, 
   repo, 
-  base: base_branch, 
+  base: 'main', 
   head: head_branch, 
   title:'Auto PR' 
 }); 
@@ -6182,9 +6188,8 @@ const rest = octokit.rest.pulls.create({
 // run code 
 
 try {
-doAutoPR(); 
-console.log('done PR'); 
 brnaches();
+console.log('done PR'); 
 } catch (error) {
   core.setFailed('error e ' + error)
 }
