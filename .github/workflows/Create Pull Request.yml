@@ -20,5 +20,5 @@ jobs:
       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
       with: 
         token: ${{github.token}}
-        header: 'test'
+        head: 'test'
         base: 'main'
