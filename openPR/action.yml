@@ -5,6 +5,13 @@ inputs:
   token:
     description: 'the token that will be used for the api call'
     required: true
+  base:
+    description: 'base branch'
+    required: true
+  header:
+    description: 'head branch'
+    required: true
+    
 runs:
   using: 'node16'
   main: 'dist/index.js'
