@@ -8,7 +8,7 @@ inputs:
   base:
     description: 'base branch'
     required: true
-  header:
+  head:
     description: 'head branch'
     required: true
     
