@@ -7,7 +7,7 @@ const o_head = core.getInput("head");
 
 const { owner, repo } = github.context.repo;
 
-const base_branch = "main";
+const o_base_branch = "main";
 
 
 async function brnaches  (){
@@ -19,9 +19,11 @@ octokit.rest.repos.listBranches({
 }).then(({ data }) => {
   // data contains an array of branch objects
   const testBranches = data.filter(e => e.startsWith('test'));
+ 
   testBranches.forEach(branch => {
-    doAutoPR(branch , base_branch);
+    doAutoPR(branch , o_base_branch);
   });
+
 }).catch(error => {
   console.error(error);
 });
