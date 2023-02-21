@@ -6142,10 +6142,10 @@ const use_base_variations = core.getInput("use_base_variations");
 
 
 // list all branches, return empty if any error occured 
-async function listBranches(ownerValue, reporValue) {
+async function listBranches(ownerValue, repoValue) {
   const branchesResponse = await octokit.rest.repos.listBranches({
     owner: ownerValue,
-    repo: reporValue
+    repo: repoValue
   })
 
   if (branchesResponse.status == 200){
@@ -6173,7 +6173,7 @@ function getCurrentDataFormatted(){
 function prepareTitle(title, head_branch, base_branch){
   if (title.length == 0){
     const formatedDate = getCurrentDataFormatted();
-    return "chore: [Auto-PR] " + head_branch +" to " + base_branch + ' ' + formattedDate;
+    return "chore: [Auto-PR] " + head_branch +" to " + base_branch + ' ' + formatedDate;
   }else{
     return title 
   }
@@ -6222,11 +6222,11 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch , body , title
 
 try {
   if (use_base_variations){
-    const allBranches = listBranches(repo, owner);
+    const allBranches = listBranches(owner,repo);
     allBranches.forEach(branch => {
       // do PR for branches that starts with head
       if (branch.name.startsWith(pr_base_branch))
-        openPR(repo, owner, pr_head_branch, branch.name, pr_body , pr_title, pr_label);
+        openPR(owner,repo, pr_head_branch, branch.name, pr_body , pr_title, pr_label);
     });
   }else{
     openPR(repo, owner, pr_head_branch, pr_base_branch , pr_body , pr_title, pr_label);
