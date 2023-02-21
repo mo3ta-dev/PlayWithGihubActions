@@ -1,15 +1,9 @@
 
-name: 'open PR'
-description: 'Open PR'
+name: 'open auto PR'
+description: 'open PR from master to all releas* branches'
 inputs:
   token:
     description: 'the token that will be used for the api call'
-    required: true
-  base:
-    description: 'base branch'
-    required: true
-  head:
-    description: 'head branch'
     required: true
     
 runs:

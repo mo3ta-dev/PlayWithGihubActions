@@ -1,7 +1,7 @@
 {
   "name": "open_prs",
   "version": "1.0.0",
-  "description": "An action for android checks",
+  "description": "An action to open PR from master to all releas* branches",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -6131,11 +6131,7 @@ const core = __webpack_require__(470);
 const github = __webpack_require__(469);
 
 const octokit = github.getOctokit(core.getInput("token"));
-const o_base = core.getInput("base");
-const o_head = core.getInput("head");
-
 const { owner, repo } = github.context.repo;
-
 
 async function listBranches() {
   // list all branches in a repository
@@ -6153,8 +6149,7 @@ async function listBranches() {
     });
 
   }).catch(error => {
-    console.log("error occured " + error);
-    console.error(error);
+    console.error("error occured " + error);
   });
 
 };
@@ -6168,8 +6163,11 @@ async function doAutoPR(base_branch) {
       month: "2-digit",
       year: "numeric"
     });
-    console.log('owener ' + owner + ' repo ' + repo + '; ' + ' base_branch ' + base_branch);
+
+    console.log('creating PR on repo ' + repo + ' from master to' + base_branch);
+    
     const title = "chore: [Auto-PR] master to " + base_branch + ' ' + formattedDate;
+    
     octokit.rest.pulls.create({
       owner,
       repo,
@@ -6177,20 +6175,20 @@ async function doAutoPR(base_branch) {
       head: 'master',
       title: title
     }).then(({ data }) => {
-      console.log("PR created ," + data.number + ' data ' + data);
+      console.log("PR created with number" + data.number );
       // add a labels to a pull request
       octokit.rest.issues.addLabels({
         owner,
         repo,
         issue_number: data.number,
-        labels: ["auto-marge"]
+        labels: ["auto-merge"]
       }).then(({ data }) => {
-        console.log("label added" + data);
+        console.log("label added to PR");
       }).catch(error => {
-        console.error('error: ' + error);
+        console.error('error while creating label: ' + error);
       });
     }).catch(error => {
-      console.error('error: ' + error);
+      console.error('error: while creating PR' + error);
     });
 
   } catch (error) {
@@ -6198,12 +6196,10 @@ async function doAutoPR(base_branch) {
   }
 }
 
-
 try {
   listBranches();
-  console.log('done PR');
 } catch (error) {
-  core.setFailed('error e ' + error)
+  core.setFailed('Error:' + error)
 }
 
 /***/ }),
