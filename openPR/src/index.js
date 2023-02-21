@@ -14,17 +14,18 @@ const use_base_variations = core.getInput("use_base_variations");
 
 // list all branches, return empty if any error occured 
 async function listBranches(ownerValue, reporValue) {
-  octokit.rest.repos.listBranches({
+  const branchesResponse = await octokit.rest.repos.listBranches({
     owner: ownerValue,
     repo: reporValue
-  }).then(({ data }) => {
-    // data contains an array of branch objects
-    return data.map(item => item.name);
+  })
 
-  }).catch(error => {
-    console.error("error occured " + error);
-    return [];
-  });
+  if (branchesResponse.status == 200){
+    console.log('loaded branches' + branchesResponse.data.length )
+    return branchesResponse.data.map(item => item.name);
+  }else{
+    console.error("error occured ");
+    return [] ; 
+  }
 
 };
 
@@ -92,7 +93,7 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch , body , title
 
 try {
   if (use_base_variations){
-    const allBranches = listBranches(repo, owner)
+    const allBranches = listBranches(repo, owner);
     allBranches.forEach(branch => {
       // do PR for branches that starts with head
       if (branch.name.startsWith(pr_base_branch))
