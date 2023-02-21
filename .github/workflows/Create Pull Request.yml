@@ -2,8 +2,9 @@ name: Create Pull Request with code
 
 on:
   workflow_dispatch: 
-  
-  
+  schedule: 
+  - cron: '0 16 * * 2'
+    
 permissions: 
   pull-requests: write   
 
@@ -20,5 +21,3 @@ jobs:
       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
       with: 
         token: ${{github.token}}
-        head: 'test'
-        base: 'main'
