@@ -1,7 +1,7 @@
 {
-  "name": "open_prs",
+  "name": "createPR",
   "version": "1.0.0",
-  "description": "An action to open PR from master to all releas* branches",
+  "description": "An action that creates a PR from one branch to another",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

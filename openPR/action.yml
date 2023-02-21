@@ -1,10 +1,36 @@
 
-name: 'open auto PR'
-description: 'open PR from master to all releas* branches'
+name: 'Create a PR from one branch to another'
+description: 'An action that opens a PR from branch to another'
 inputs:
   token:
     description: 'the token that will be used for the api call'
     required: true
+  base_branch: 
+    description: "base branch for pull request, default is ['master']"
+    required: true 
+    default: 'master'
+  head_branch: 
+    description: "head branch for pull request, default is ['blank']"
+    required: true 
+    default: 'blank'
+  use_base_variations: 
+    description: "it allows to make prs from head_branch into branches that starts with bas_branch name, default ['false']"  
+    required: false 
+    default: 'false'
+  pr_title: 
+    description: "title for pull request, default: 'chore: [Auto-PR]  head_branch to base_branch dayOfTrigger'" 
+    required: false 
+    default: ''
+  pr_body: 
+    description: "body of pull request, default ['']"
+    required: false 
+    default: ''
+  pr_label: 
+    description: "label to be added to pull request, default ['']" 
+    required: false 
+    default: ''
+    
+
     
 runs:
   using: 'node16'
