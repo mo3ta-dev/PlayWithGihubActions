@@ -60,9 +60,7 @@ function addLabel(pr_owner, pr_repo, pull_request_number, label) {
     pr_repo,
     issue_number: pull_request_number,
     labels: [label]
-  }).then(({
-    data
-  }) => {
+  }).then(({ data }) => {
     console.log("label" + label + " added to PR");
   }).catch(error => {
     console.error('error while creating label: ' + error);
@@ -74,8 +72,8 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
     const pr_title = prepareTitle(title, head_branch, base_branch);
     console.log("title : " + pr_title);
     octokit.rest.pulls.create({
-      pr_owner,
-      pr_repo,
+      owner: pr_owner,
+      repo: pr_repo,
       base: base_branch,
       head: head_branch,
       title: pr_title,
@@ -90,7 +88,7 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
       }
 
     }).catch(error => {
-      console.error('error: while creating PR' + error);
+      console.error('error: while creating PR ' + error);
     });
 
   } catch (error) {
