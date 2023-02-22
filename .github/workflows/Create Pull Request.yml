@@ -15,13 +15,14 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Create Pull Request
       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
       with: 
         token: ${{github.token}}
         head_branch: 'master'
-        base_branch: 'release30'
-        use_base_variations: 'false'
+        base_branch: 'release'
+        use_base_variations: 'true'
         pr_body: 'sasasas sasasasa'
+        pr_label: 'auuuu'
