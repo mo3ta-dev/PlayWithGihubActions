@@ -6228,7 +6228,7 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
 
 function checkRequiredInputs(){
   if (!pr_head_branch || !pr_base_branch){
-    core.setFailed('send required inputs like [source_branch] [target_branch]')
+    core.setFailed('please provide required inputs like [source_branch] [target_branch]')
     return false; 
   }
   return true; 
