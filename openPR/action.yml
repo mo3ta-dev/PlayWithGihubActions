@@ -1,5 +1,5 @@
 
-name: 'Create a PR from one branch to another'
+name: 'AutoPR'
 description: 'An action that opens a PR from branch to another'
 inputs:
   token:
@@ -14,7 +14,7 @@ inputs:
     required: true 
     default: 'blank'
   use_base_variations: 
-    description: "it allows to make prs from head_branch into branches that starts with bas_branch name, default ['false']"  
+    description: "it allows to make PRs from head_branch into branches that starts with base_branch name, default ['false']"  
     required: false 
     default: 'false'
   pr_title: 

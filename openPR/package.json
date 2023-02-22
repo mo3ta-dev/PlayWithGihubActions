@@ -1,5 +1,5 @@
 {
-  "name": "createPR",
+  "name": "autoPR",
   "version": "1.0.0",
   "description": "An action that creates a PR from one branch to another",
   "main": "index.js",

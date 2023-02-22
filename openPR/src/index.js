@@ -54,10 +54,11 @@ function prepareTitle(title, head_branch, base_branch) {
 }
 
 function addLabel(pr_owner, pr_repo, pull_request_number, label) {
+  console.log('adding ' + label + ' to ' + pull_request_number);
   // add a labels to a pull request
   octokit.rest.issues.addLabels({
-    pr_owner,
-    pr_repo,
+    owner: pr_owner,
+    repo: pr_repo,
     issue_number: pull_request_number,
     labels: [label]
   }).then(({
