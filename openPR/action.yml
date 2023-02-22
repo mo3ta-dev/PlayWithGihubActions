@@ -1,24 +1,24 @@
 
-name: 'AutoPR'
-description: 'An action that opens a PR from branch to another'
+name: 'createAutoPR'
+description: 'an action that opens a pull request from one branch to another'
 inputs:
   token:
     description: 'the token that will be used for the api call'
     required: true
-  base_branch: 
-    description: "base branch for pull request, default is ['master']"
+  target_branch: 
+    description: "The name of the branch you want the changes pulled into"
     required: true 
-    default: 'master'
-  head_branch: 
-    description: "head branch for pull request, default is ['blank']"
+    default: ''
+  source_branch: 
+    description: "The name of the branch where your changes are implemented"
     required: true 
-    default: 'blank'
-  use_base_variations: 
-    description: "it allows to make PRs from head_branch into branches that starts with base_branch name, default ['false']"  
+    default: ''
+  use_matching_target_branches: 
+    description: "allows pull requests to be raised to all matching branches starting with the target_branch name, default ['false']"  
     required: false 
     default: 'false'
   pr_title: 
-    description: "title for pull request, default: 'chore: [Auto-PR]  head_branch to base_branch dayOfTrigger'" 
+    description: "title for pull request, default: 'chore: [Auto-PR]  source_branch to target_branch dayOfTrigger'" 
     required: false 
     default: ''
   pr_body: 

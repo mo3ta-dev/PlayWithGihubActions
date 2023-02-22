@@ -1,7 +1,7 @@
 {
-  "name": "autoPR",
+  "name": "createAutoPR",
   "version": "1.0.0",
-  "description": "An action that creates a PR from one branch to another",
+  "description": "an action that opens a pull request from one branch to another",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

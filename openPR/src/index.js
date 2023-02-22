@@ -7,12 +7,12 @@ const {
   repo
 } = github.context.repo;
 
-const pr_head_branch = core.getInput("head_branch");
-const pr_base_branch = core.getInput("base_branch");
+const pr_head_branch = core.getInput("source_branch");
+const pr_base_branch = core.getInput("target_branch");
 const pr_title = core.getInput("pr_title");
 const pr_body = core.getInput("pr_body");
 const pr_label = core.getInput("pr_label");
-const use_base_variations = core.getInput("use_base_variations");
+const use_matching_target_branches = core.getInput("use_matching_target_branches");
 
 
 // list all branches, return empty if any error occured 
@@ -98,7 +98,7 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
 
 
 
-if (use_base_variations == 'true') {
+if (use_matching_target_branches == 'true') {
   const allBranches = listBranches(owner, repo);
   allBranches.then((data) => {
     console.log('allBranches  ' + data.length)
@@ -108,7 +108,7 @@ if (use_base_variations == 'true') {
         openPR(owner, repo, pr_head_branch, branch, pr_body, pr_title, pr_label);
     });
   }).catch((error) => {
-    console.error('error with listing 1 ' + error);
+    console.error('error with listing ' + error);
   });
 
 } else {
