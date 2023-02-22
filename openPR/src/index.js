@@ -97,20 +97,36 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
 }
 
 
+function checkRequired(){
+  if (!pr_head_branch || !pr_base_branch){
+    core.setFailed('send required ')
+    return false; 
+  }
+  return true; 
+}
 
-if (use_matching_target_branches == 'true') {
-  const allBranches = listBranches(owner, repo);
-  allBranches.then((data) => {
-    console.log('allBranches  ' + data.length)
-    data.forEach(branch => {
-      // do PR for branches that starts with pr_base_branch
-      if (branch.startsWith(pr_base_branch))
-        openPR(owner, repo, pr_head_branch, branch, pr_body, pr_title, pr_label);
+
+function main(){
+  if (use_matching_target_branches == 'true') {
+    const allBranches = listBranches(owner, repo);
+    allBranches.then((data) => {
+      console.log('allBranches  ' + data.length)
+      data.forEach(branch => {
+        // do PR for branches that starts with pr_base_branch
+        if (branch.startsWith(pr_base_branch))
+          openPR(owner, repo, pr_head_branch, branch, pr_body, pr_title, pr_label);
+      });
+    }).catch((error) => {
+      console.error('error with listing ' + error);
     });
-  }).catch((error) => {
-    console.error('error with listing ' + error);
-  });
+  
+  } else {
+    openPR(owner, repo, pr_head_branch, pr_base_branch, pr_body, pr_title, pr_label);
+  }
 
-} else {
-  openPR(owner, repo, pr_head_branch, pr_base_branch, pr_body, pr_title, pr_label);
+}
+
+
+if (checkRequired()){
+  main(); 
 }
