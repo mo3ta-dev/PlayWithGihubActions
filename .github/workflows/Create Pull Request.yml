@@ -21,5 +21,7 @@ jobs:
       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
       with: 
         token: ${{github.token}}
-        head_branch: 'release30'
+        head_branch: 'master'
+        base_branch: 'release'
+        use_base_variations: 'true'
         pr_body: 'sasasas sasasasa'
