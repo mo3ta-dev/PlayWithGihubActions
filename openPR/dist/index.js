@@ -6143,7 +6143,6 @@ const pr_body = core.getInput("pr_body");
 const pr_label = core.getInput("pr_label");
 const use_matching_target_branches = core.getInput("use_matching_target_branches");
 
-
 // list all branches, return empty if any error occured 
 async function listBranches(ownerValue, repoValue) {
   const branchesResponse = await octokit.rest.repos.listBranches({
@@ -6172,11 +6171,11 @@ function getCurrentDataFormatted() {
 
 }
 
-// handle if title not provided, it constructs it, otherwise it returns same title. 
+// if title is not provided a default one will be constructed, otherwise the same title will be returned
 function prepareTitle(title, head_branch, base_branch) {
   if (title.length == 0) {
-    const formatedDate = getCurrentDataFormatted();
-    return "chore: [Auto-PR] " + head_branch + " to " + base_branch + ' ' + formatedDate;
+    const formattedDate = getCurrentDataFormatted();
+    return "chore: [Auto-PR] " + head_branch + " to " + base_branch + ' ' + formattedDate;
   } else {
     return title
   }
@@ -6212,7 +6211,7 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
   }).then(({
     data
   }) => {
-    console.log("PR created with number" + data.number);
+    console.log("Creating PR for " + pr_repo + " number " + data.numberr);
     // add label if was sent 
     if (label.length > 0) {
       addLabel(pr_owner, pr_repo, data.number, label);
@@ -6225,7 +6224,6 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
   });
 }
 
-
 function checkRequiredInputs(){
   if (!pr_head_branch || !pr_base_branch){
     core.setFailed('please provide required inputs like [source_branch] [target_branch]')
@@ -6233,7 +6231,6 @@ function checkRequiredInputs(){
   }
   return true; 
 }
-
 
 function main(){
   if (use_matching_target_branches == 'true') {
@@ -6252,9 +6249,7 @@ function main(){
   } else {
     openPR(owner, repo, pr_head_branch, pr_base_branch, pr_body, pr_title, pr_label);
   }
-
 }
-
 
 if (checkRequiredInputs()){
   main(); 

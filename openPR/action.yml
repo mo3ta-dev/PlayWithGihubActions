@@ -16,7 +16,7 @@ inputs:
     required: false 
     default: 'false'
   pr_title: 
-    description: "title for pull request, default: 'chore: [Auto-PR]  source_branch to target_branch dayOfTrigger'" 
+    description: "title for pull request, default: 'chore: [Auto-PR] source_branch to target_branch currentDate'" 
     required: false 
     default: ''
   pr_body: 
