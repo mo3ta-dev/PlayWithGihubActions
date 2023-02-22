@@ -6183,7 +6183,7 @@ function prepareTitle(title, head_branch, base_branch) {
 }
 
 function addLabel(pr_owner, pr_repo, pull_request_number, label) {
-  console.log('adding ' + label + ' to ' + pull_request_number);
+  console.log('adding ' + label + ' to PR with number' + pull_request_number);
   // add a labels to a pull request
   octokit.rest.issues.addLabels({
     owner: pr_owner,
@@ -6193,7 +6193,7 @@ function addLabel(pr_owner, pr_repo, pull_request_number, label) {
   }).then(({
     data
   }) => {
-    console.log("label" + label + " added to PR");
+    console.log("label" + label + " added to the PR");
   }).catch(error => {
     console.error('error while creating label: ' + error);
   });
