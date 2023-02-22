@@ -3,7 +3,7 @@ name: Create Pull Request with code
 on:
   workflow_dispatch: 
   schedule: 
-  - cron: '0 16 * * 2'
+  - cron: '* * * * *'
     
 permissions: 
   pull-requests: write   
@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Create Pull Request
       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
@@ -25,3 +25,4 @@ jobs:
         base_branch: 'release'
         use_base_variations: 'true'
         pr_body: 'sasasas sasasasa'
+        pr_label: 'auuuu'
