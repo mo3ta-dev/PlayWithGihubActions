@@ -26,7 +26,7 @@ async function listBranches(ownerValue, repoValue) {
     console.log('loaded branches ' + branchesResponse.data.length)
     return branchesResponse.data.map(item => item.name);
   } else {
-    console.error("error occured with listing brnaches");
+    console.error("error occured with listing brnaches " + branchesResponse.data);
     return [];
   }
 
@@ -108,10 +108,8 @@ if (use_base_variations == 'true') {
       if (branch.name.startsWith(pr_base_branch))
         openPR(owner, repo, pr_head_branch, branch.name, pr_body, pr_title, pr_label);
     });
-  }).catch(({
-    error
-  }) => {
-    console.error('error with listing' + error);
+  }).catch((error) => {
+    console.error('error with listing 1 ' + error);
   });
 
 } else {
