@@ -6154,7 +6154,7 @@ async function listBranches(ownerValue, repoValue) {
     console.log('loaded branches ' + branchesResponse.data.length)
     return branchesResponse.data.map(item => item.name);
   } else {
-    console.error("error occured with listing brnaches " + branchesResponse.data);
+    console.error("error occured with listing branches " + branchesResponse.data);
     return [];
   }
 
@@ -6211,7 +6211,7 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
   }).then(({
     data
   }) => {
-    console.log("Creating PR for " + pr_repo + " number " + data.numberr);
+    console.log("Creating PR for " + pr_repo + " number " + data.number);
     // add label if was sent 
     if (label.length > 0) {
       addLabel(pr_owner, pr_repo, data.number, label);
@@ -6238,7 +6238,7 @@ function main(){
     allBranches.then((data) => {
       console.log('allBranches  ' + data.length)
       data.forEach(branch => {
-        // do PR for branches that starts with pr_base_branch
+        // create PRs for branches that start with pr_base_branch
         if (branch.startsWith(pr_base_branch))
           openPR(owner, repo, pr_head_branch, branch, pr_body, pr_title, pr_label);
       });
