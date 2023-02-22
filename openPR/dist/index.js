@@ -6197,7 +6197,6 @@ function addLabel(pr_owner, pr_repo, pull_request_number, label) {
 }
 
 async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, label) {
-  try {
     const pr_title = prepareTitle(title, head_branch, base_branch);
     console.log("title : " + pr_title);
     octokit.rest.pulls.create({
@@ -6216,13 +6215,9 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
         addLabel(pr_owner, pr_repo, data.number, label);
       }
 
-    }).catch(error => {
-      console.error('error: while creating PR ' + error);
+    }).catch(({message}) => {
+      console.error('error: while creating PR ' + message);
     });
-
-  } catch (error) {
-    core.setFailed('Error ' + error);
-  }
 }
 
 try {
