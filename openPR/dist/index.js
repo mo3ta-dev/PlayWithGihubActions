@@ -6152,10 +6152,10 @@ async function listBranches(ownerValue, repoValue) {
   })
 
   if (branchesResponse.status == 200) {
-    console.log('loaded branches' + branchesResponse.data.length)
+    console.log('loaded branches ' + branchesResponse.data.length)
     return branchesResponse.data.map(item => item.name);
   } else {
-    console.error("error occured ");
+    console.error("error occured with listing brnaches");
     return [];
   }
 
@@ -6189,7 +6189,9 @@ function addLabel(pr_owner, pr_repo, pull_request_number, label) {
     pr_repo,
     issue_number: pull_request_number,
     labels: [label]
-  }).then(({ data }) => {
+  }).then(({
+    data
+  }) => {
     console.log("label" + label + " added to PR");
   }).catch(error => {
     console.error('error while creating label: ' + error);
@@ -6197,48 +6199,52 @@ function addLabel(pr_owner, pr_repo, pull_request_number, label) {
 }
 
 async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, label) {
-    const pr_title = prepareTitle(title, head_branch, base_branch);
-    console.log("title : " + pr_title);
-    octokit.rest.pulls.create({
-      owner: pr_owner,
-      repo: pr_repo,
-      base: base_branch,
-      head: head_branch,
-      title: pr_title,
-      body: body
-    }).then(({
-      data
-    }) => {
-      console.log("PR created with number" + data.number);
-      // add label if was sent 
-      if (label.length > 0) {
-        addLabel(pr_owner, pr_repo, data.number, label);
-      }
+  const pr_title = prepareTitle(title, head_branch, base_branch);
+  console.log("title : " + pr_title);
+  octokit.rest.pulls.create({
+    owner: pr_owner,
+    repo: pr_repo,
+    base: base_branch,
+    head: head_branch,
+    title: pr_title,
+    body: body
+  }).then(({
+    data
+  }) => {
+    console.log("PR created with number" + data.number);
+    // add label if was sent 
+    if (label.length > 0) {
+      addLabel(pr_owner, pr_repo, data.number, label);
+    }
 
-    }).catch(({message}) => {
-      console.error('error: while creating PR ' + message);
-    });
+  }).catch(({
+    message
+  }) => {
+    console.error('error: while creating PR ' + message);
+  });
 }
 
-try {
-  if (use_base_variations == 'true') {
-    const allBranches = listBranches(owner, repo);
-    allBranches.then(({data}) => {
-      data.forEach(branch => {
-        // do PR for branches that starts with pr_base_branch
-        if (branch.name.startsWith(pr_base_branch))
-          openPR(owner, repo, pr_head_branch, branch.name, pr_body, pr_title, pr_label);
-      });
-    }).catch(({error}) => {
-      console.error('error' + error);
-    });
-   
-  } else {
-    openPR(owner,repo, pr_head_branch, pr_base_branch, pr_body, pr_title, pr_label);
-  }
 
-} catch (error) {
-  core.setFailed('Error:' + error)
+
+if (use_base_variations == 'true') {
+  const allBranches = listBranches(owner, repo);
+  allBranches.then(({
+    data
+  }) => {
+    console.log('allBranches  ' + data.length)
+    data.forEach(branch => {
+      // do PR for branches that starts with pr_base_branch
+      if (branch.name.startsWith(pr_base_branch))
+        openPR(owner, repo, pr_head_branch, branch.name, pr_body, pr_title, pr_label);
+    });
+  }).catch(({
+    error
+  }) => {
+    console.error('error with listing' + error);
+  });
+
+} else {
+  openPR(owner, repo, pr_head_branch, pr_base_branch, pr_body, pr_title, pr_label);
 }
 
 /***/ }),
