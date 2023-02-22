@@ -6221,7 +6221,7 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch , body , title
 }
 
 try {
-  if (use_base_variations){
+  if (use_base_variations == 'true'){
     const allBranches = listBranches(owner,repo);
     allBranches.forEach(branch => {
       // do PR for branches that starts with head
