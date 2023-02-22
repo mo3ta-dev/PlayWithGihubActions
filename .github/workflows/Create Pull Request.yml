@@ -2,8 +2,7 @@ name: Create Pull Request with code
 
 on:
   workflow_dispatch: 
-  schedule: 
-  - cron: '*/3 * * * *'
+
     
 permissions: 
   pull-requests: write   
