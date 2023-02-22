@@ -22,6 +22,6 @@ jobs:
       with: 
         token: ${{github.token}}
         head_branch: 'master'
-        base_branch: 'release'
+        base_branch: 'release30'
         use_base_variations: 'false'
         pr_body: 'sasasas sasasasa'
