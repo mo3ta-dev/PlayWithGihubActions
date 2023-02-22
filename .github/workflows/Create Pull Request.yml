@@ -22,7 +22,7 @@ jobs:
       with: 
         token: ${{github.token}}
         head_branch: 'master'
-        base_branch: 'release'
-        use_base_variations: 'true'
-        pr_body: 'sasasas sasasasa'
-        pr_label: 'auuuu'
+        base_branch: 'release30'
+        use_base_variations: 'false'
+        pr_body: 'our workflow'
+        pr_label: 'auto-merge'
