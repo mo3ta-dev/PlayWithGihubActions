@@ -6131,7 +6131,10 @@ const core = __webpack_require__(470);
 const github = __webpack_require__(469);
 
 const octokit = github.getOctokit(core.getInput("token"));
-const { owner, repo } = github.context.repo;
+const {
+  owner,
+  repo
+} = github.context.repo;
 
 const pr_head_branch = core.getInput("head_branch");
 const pr_base_branch = core.getInput("base_branch");
@@ -6148,69 +6151,73 @@ async function listBranches(ownerValue, repoValue) {
     repo: repoValue
   })
 
-  if (branchesResponse.status == 200){
-    console.log('loaded branches' + branchesResponse.data.length )
+  if (branchesResponse.status == 200) {
+    console.log('loaded branches' + branchesResponse.data.length)
     return branchesResponse.data.map(item => item.name);
-  }else{
+  } else {
     console.error("error occured ");
-    return [] ; 
+    return [];
   }
 
 };
 
 // format date in form DD/MM/YYYY 
-function getCurrentDataFormatted(){
+function getCurrentDataFormatted() {
   const date = new Date();
   return date.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric"
-    });
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric"
+  });
 
 }
 
 // handle if title not provided, it constructs it, otherwise it returns same title. 
-function prepareTitle(title, head_branch, base_branch){
-  if (title.length == 0){
+function prepareTitle(title, head_branch, base_branch) {
+  if (title.length == 0) {
     const formatedDate = getCurrentDataFormatted();
-    return "chore: [Auto-PR] " + head_branch +" to " + base_branch + ' ' + formatedDate;
-  }else{
-    return title 
+    return "chore: [Auto-PR] " + head_branch + " to " + base_branch + ' ' + formatedDate;
+  } else {
+    return title
   }
 }
 
-function addLabel(pr_owner, pr_repo, pull_request_number, label){
+function addLabel(pr_owner, pr_repo, pull_request_number, label) {
   // add a labels to a pull request
   octokit.rest.issues.addLabels({
     pr_owner,
     pr_repo,
-    issue_number:pull_request_number,
+    issue_number: pull_request_number,
     labels: [label]
-  }).then(({ data }) => {
-    console.log("label"+ label + " added to PR");
+  }).then(({
+    data
+  }) => {
+    console.log("label" + label + " added to PR");
   }).catch(error => {
     console.error('error while creating label: ' + error);
   });
 }
 
-async function openPR(pr_owner, pr_repo, head_branch, base_branch , body , title, label) {
+async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, label) {
   try {
-    const pr_title = prepareTitle(title , head_branch, base_branch);
+    const pr_title = prepareTitle(title, head_branch, base_branch);
     console.log("title : " + pr_title);
     octokit.rest.pulls.create({
       pr_owner,
       pr_repo,
       base: base_branch,
       head: head_branch,
-      title: pr_title, 
-      body: body 
-    }).then(({ data }) => {
+      title: pr_title,
+      body: body
+    }).then(({
+      data
+    }) => {
       console.log("PR created with number" + data.number);
       // add label if was sent 
-      if (label.length > 0 ){
-          addLabel(pr_owner , pr_repo, data.number, label);
-      }  
-    
+      if (label.length > 0) {
+        addLabel(pr_owner, pr_repo, data.number, label);
+      }
+
     }).catch(error => {
       console.error('error: while creating PR' + error);
     });
@@ -6221,15 +6228,20 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch , body , title
 }
 
 try {
-  if (use_base_variations == 'true'){
-    const allBranches = listBranches(owner,repo);
-    allBranches.forEach(branch => {
-      // do PR for branches that starts with head
-      if (branch.name.startsWith(pr_base_branch))
-        openPR(owner,repo, pr_head_branch, branch.name, pr_body , pr_title, pr_label);
+  if (use_base_variations == 'true') {
+    const allBranches = listBranches(owner, repo);
+    allBranches.then(({data}) => {
+      data.forEach(branch => {
+        // do PR for branches that starts with pr_base_branch
+        if (branch.name.startsWith(pr_base_branch))
+          openPR(owner, repo, pr_head_branch, branch.name, pr_body, pr_title, pr_label);
+      });
+    }).catch(({error}) => {
+      console.error('error' + error);
     });
-  }else{
-    openPR(repo, owner, pr_head_branch, pr_base_branch , pr_body , pr_title, pr_label);
+   
+  } else {
+    openPR(owner,repo, pr_head_branch, pr_base_branch, pr_body, pr_title, pr_label);
   }
 
 } catch (error) {
