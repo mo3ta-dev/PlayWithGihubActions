@@ -103,8 +103,8 @@ if (use_base_variations == 'true') {
     console.log('allBranches  ' + data.length)
     data.forEach(branch => {
       // do PR for branches that starts with pr_base_branch
-      if (branch.name.startsWith(pr_base_branch))
-        openPR(owner, repo, pr_head_branch, branch.name, pr_body, pr_title, pr_label);
+      if (branch.startsWith(pr_base_branch))
+        openPR(owner, repo, pr_head_branch, branch, pr_body, pr_title, pr_label);
     });
   }).catch((error) => {
     console.error('error with listing 1 ' + error);
