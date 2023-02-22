@@ -6161,7 +6161,7 @@ async function listBranches(ownerValue, repoValue) {
 };
 
 // format date in form DD/MM/YYYY 
-function getCurrentDataFormatted() {
+function getCurrentDateFormatted() {
   const date = new Date();
   return date.toLocaleDateString("en-GB", {
     day: "2-digit",
@@ -6174,7 +6174,7 @@ function getCurrentDataFormatted() {
 // if title is not provided a default one will be constructed, otherwise the same title will be returned
 function prepareTitle(title, head_branch, base_branch) {
   if (title.length == 0) {
-    const formattedDate = getCurrentDataFormatted();
+    const formattedDate = getCurrentDateFormatted();
     return "chore: [Auto-PR] " + head_branch + " to " + base_branch + ' ' + formattedDate;
   } else {
     return title
