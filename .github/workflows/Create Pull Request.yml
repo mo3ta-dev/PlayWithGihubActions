@@ -20,5 +20,6 @@ jobs:
       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
       with: 
         token: ${{github.token}}
-        pr_body: 'our workflow'
+        source_branch: 'master'
+        target_branch: 'release30'
         pr_label: 'auto-merge'
