@@ -2,6 +2,26 @@ name: Create Pull Request with code
 
 on:
   workflow_dispatch: 
+    inputs:
+      source_branch:
+        required: true
+        type: choice 
+        options:
+          - 'develop'
+          - 'test'
+          - 'stage'
+          - 'production'
+      target_branch: 
+        required: true
+        type: choice 
+        options:
+          - 'develop'
+          - 'test'
+          - 'stage'
+          - 'production'
+      pr_label:
+        required: false
+        default: ''
 
     
 permissions: 
