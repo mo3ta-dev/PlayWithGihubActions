@@ -40,6 +40,6 @@ jobs:
       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
       with: 
         token: ${{github.token}}
-        source_branch: 'master'
-        target_branch: 'release30'
-        pr_label: 'auto-merge'
+        source_branch: ${{ inputs.source_branch }} 
+        target_branch: ${{ inputs.target_branch }} 
+        pr_label: ${{ inputs.pr_label }} 
