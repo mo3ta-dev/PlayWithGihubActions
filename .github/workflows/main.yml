@@ -1,0 +1,12 @@
+name: My Workflow
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Split String
+        run: |
+          my_string="develop-test"
+          my_list=(${my_string//-/ })
+          echo "${my_list[0]}"
+          echo "${my_list[1]}"
