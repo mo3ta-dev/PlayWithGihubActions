@@ -52,7 +52,7 @@ jobs:
       - name: Create pull request
         uses: mo3ta-dev/PlayWithGihubActions/createAutoPR@main
         with:
-          token: ${{ secrets.ONEPLATFORM_GITHUB_TOKEN }}
+          token: ${{github.token}}
           repo_name: ' ${{inputs.source_branch}} - '
           source_target_branch: ${{ inputs.source_branch }}
           pr_label: 'auto-merge'
