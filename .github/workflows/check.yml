@@ -53,6 +53,6 @@ jobs:
         uses: mo3ta-dev/PlayWithGihubActions/createAutoPR@main
         with:
           token: ${{github.token}}
-          repo_name: ' ${{inputs.source_branch}} - '
-          source_target_branch: ${{ inputs.source_branch }}
+          repo_name: '${{inputs.platform}}-${{inputs.component}}'
+          source_target_branch: ${{ inputs.branch }}
           pr_label: 'auto-merge'
