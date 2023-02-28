@@ -6219,10 +6219,8 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
       addLabel(pr_owner, pr_repo, data.number, label);
     }
 
-  }).catch(({
-    message
-  }) => {
-    console.error('error: while creating PR ' + message);
+  }).catch((message) => {
+    console.error('error: while creating PR : ' + message);
   });
 }
 
