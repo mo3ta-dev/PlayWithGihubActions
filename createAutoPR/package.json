@@ -1,0 +1,19 @@
+{
+  "name": "createAutoPR",
+  "version": "1.0.0",
+  "description": "an action that opens a pull request from one branch to another",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build src/index.js -o dist"
+  },
+  "author": "mahmoud-maghrabia",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.9.1",
+    "@actions/github": "^5.0.3"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.3"
+  }
+}
