@@ -101,8 +101,7 @@ function checkRequiredInputs(){
     pr_head_branch = splitted[0];
     pr_base_branch = splitted[1];
   }
-
-  if (!pr_head_branch || !pr_base_branch){
+  else if (!pr_head_branch || !pr_base_branch){
     core.setFailed('please provide required inputs like [source_branch] [target_branch]')
     return false; 
   }
