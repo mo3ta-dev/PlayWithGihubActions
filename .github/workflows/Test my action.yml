@@ -6,7 +6,15 @@ jobs:
   first: 
     runs-on: ubuntu-latest 
     steps: 
-      - name: my action 
-        uses: MahmoudMabrok/dddd@main
+      - name: Split String
+        id: split
+        run: |
+          my_string="develop-test"
+          my_list=(${my_string//-/ })
+          echo "::set-output name=first_part::${my_list[0]}"
+          echo "::set-output name=second_part::${my_list[1]}"
+          
+      - name: show 
+        run: echo " ${{ steps.split.outputs.first_part }} "
         
         
