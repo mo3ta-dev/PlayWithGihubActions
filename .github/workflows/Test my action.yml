@@ -14,7 +14,7 @@ jobs:
     steps: 
       - name: Split Brnaches
         run: |
-          branches = '${{ inputs.branch }}'
+          branches="${{ inputs.branch }}"
           branches_list=(${branches//-/ })
           echo "source=${branches_list[0]}" >> $GITHUB_ENV
           echo "target=${branches_list[1]}" >> $GITHUB_ENV
