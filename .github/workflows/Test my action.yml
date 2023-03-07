@@ -14,8 +14,10 @@ jobs:
           my_list=(${my_string//-/ })
           echo "::set-output name=first_part::${my_list[0]}"
           echo "::set-output name=second_part::${my_list[1]}"
+          echo "first=${my_list[0]}" >> $GITHUB_ENV
+          
           
       - name: show 
-        run: echo " ${{ steps.split.outputs.first_part }} "
+        run: echo "A.${{ steps.split.outputs.first_part }}.env${{env.first}}."
         
         
