@@ -23,7 +23,8 @@ jobs:
 
      - name: Checkout code
        uses: actions/checkout@v2
-
-     - name: Create pull request
-       run: |
-        gh pr create -B test -h main -t "Merge develop into test"
+     - name: Create Pull Request
+       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
+       with: 
+           token: ${{github.token}}
+           pr_label: ${{ inputs.pr_label }} 
