@@ -22,7 +22,7 @@ jobs:
     strategy:
       matrix:
         platform: ['Android', 'iOS', 'React-Native']
-        repo: ${{ if github.event_name == 'pull_request' }}[item1, item2]${{ else }}[item3, item4]${{ endif }}
+        repo: ${{ if github.event_name == 'pull_request' }}[value1, value2]${{ else }}[value3, value4]${{ endif }}
     steps:      
      - name: Split branches
        run: |
