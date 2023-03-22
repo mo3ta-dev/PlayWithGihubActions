@@ -14,6 +14,10 @@ on:
           options:
                - 'application'
                - 'framework'
+               
+env:
+   app: ['MVA10']
+   frameworks: ['a', 'b']'
 
 jobs:
   frameworks:
@@ -22,7 +26,7 @@ jobs:
     strategy:
       matrix:
         platform: ['Android', 'iOS', 'React-Native']
-        repo: ${{ if github.event_name == 'pull_request' }}[value1, value2]${{ else }}[value3, value4]${{ endif }}
+        repo: ${{env.app}}
     steps:      
      - name: Split branches
        run: |
