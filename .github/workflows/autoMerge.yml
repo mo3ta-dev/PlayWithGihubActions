@@ -1,0 +1,61 @@
+name: AutoMergeFramewroks
+
+on: 
+   workflow_dispatch: 
+     inputs:
+       branch:
+          type: choice
+          options:
+               - 'develop-test'
+               - 'support-develop'
+               - 'support-hotfix'
+       target_type:
+          type: choice
+          options:
+               - 'application'
+               - 'framework'
+               
+env:
+   app: ['MVA10']
+   frameworks: ['a', 'b']'
+
+jobs:
+  frameworks:
+    runs-on: ubuntu-latest
+    if: inputs.target_type == 'framework'
+    strategy:
+      matrix:
+        platform: ['Android', 'iOS', 'React-Native']
+        repo: ${{env.app}}
+    steps:      
+     - name: Split branches
+       run: |
+          branches="${{ inputs.branch }}"
+          branches_list=(${branches//-/ })
+          echo "source=${branches_list[0]}" >> $GITHUB_ENV
+          echo "target=${branches_list[1]}" >> $GITHUB_ENV
+          
+     - name: Run Action on
+       run: |
+          echo "${{ matrix.platform }}-${{ matrix.repo }} "   
+          echo " ${{env.source}} to ${{env.target}}"
+          echo "aaaa ${{ env.AA}}"
+  app:
+    runs-on: ubuntu-latest
+    if: inputs.target_type == 'application' 
+    strategy:
+      matrix:
+        platform: ['Android', 'iOS', 'React-Native']
+        repo: ['MVA10']
+    steps:      
+     - name: Split branches
+       run: |
+          branches="${{ inputs.branch }}"
+          branches_list=(${branches//-/ })
+          echo "source=${branches_list[0]}" >> $GITHUB_ENV
+          echo "target=${branches_list[1]}" >> $GITHUB_ENV
+          
+     - name: Run Action on
+       run: |
+          echo "${{ matrix.platform }}-${{ matrix.repo }} "   
+          echo " ${{env.source}} to ${{env.target}}"

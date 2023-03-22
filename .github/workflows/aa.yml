@@ -2,9 +2,18 @@ name: CI
 run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      component:
+        required: true
+        type: choice
+        options:
+          # MVA REPOS START
+          - 'A'
+          - 'b'
+          - 'c'
+          # MVA REPOS END
+
 
 jobs:
   build:
@@ -14,7 +23,8 @@ jobs:
 
      - name: Checkout code
        uses: actions/checkout@v2
-
-     - name: Create pull request
-       run: |
-        gh pr create -B test -h main -t "Merge develop into test"
+     - name: Create Pull Request
+       uses: mo3ta-dev/PlayWithGihubActions/openPR@main
+       with: 
+           token: ${{github.token}}
+           pr_label: ${{ inputs.pr_label }} 
