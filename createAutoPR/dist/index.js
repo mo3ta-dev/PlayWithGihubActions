@@ -6222,7 +6222,11 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
       owner: pr_owner,
       repo: pr_repo,
       pull_number: data.number
-    }).then((data) => {}).catch((error) => {});
+    }).then((data1) => {
+      core.debug(`done ${data1.data.merged}`);
+    }).catch((error) => {
+      core.error(`error ${error}`)
+    });
 
   }).catch((message) => {
     console.error('error: while creating PR : ' + message);
