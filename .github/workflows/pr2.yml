@@ -24,9 +24,11 @@ on:
           - 'develop-test'
           - 'test-stage'
           - 'stage-production'
-
+          
 permissions:
   pull-requests: write
+  contents: read
+  actions: read
 
 jobs:
   create-pull-request:
