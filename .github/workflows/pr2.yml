@@ -24,9 +24,8 @@ on:
           - 'develop-test'
           - 'test-stage'
           - 'stage-production'
-
-permissions:
-  pull-requests: write
+          
+permissions: read-all|write-all
 
 jobs:
   create-pull-request:
