@@ -1,4 +1,4 @@
-name: A.
+name: AutoMergeFramewroks
 
 on: 
    workflow_dispatch: 
@@ -9,11 +9,6 @@ on:
                - 'develop-test'
                - 'support-develop'
                - 'support-hotfix'
-       target:
-          type: choice
-          options:
-               - 'application'
-               - 'framework'
     
 jobs:
   my-job:
@@ -21,7 +16,7 @@ jobs:
     strategy:
       matrix:
         platform: ['Android', 'iOS', 'React-Native']
-        repo: ['MVA10-Framework','MVA10-Foundation']
+        repo: ['MVA10-Framework','MVA10-Foundation', 'MVA10-Login','MVA10-Message-Center','MVA10-Onboarding','MVA10-Billing','MVA10-Netperform','MVA10-SOHO-Billing','MVA10-SOHO-Framework','MVA10-Purchase', 'MVA10-eSIM', 'MVA10-Roaming', 'MVA12-Framework', 'Netperform-SDK', 'Roaming-SDK']
     steps:      
      - name: Split branches
        run: |
@@ -33,4 +28,4 @@ jobs:
      - name: Run Action on
        run: |
           echo "${{ matrix.platform }}-${{ matrix.repo }} "   
-          echo " ${{env.source}} to  ${{env.target}}"
+          echo " ${{env.source}} to ${{env.target}}"
