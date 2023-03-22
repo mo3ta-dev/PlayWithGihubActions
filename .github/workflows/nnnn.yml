@@ -1,15 +1,36 @@
 name: My WWWWW
 
-on: [push, workflow_dispatch]
-     
+on: 
+   workflow_dispatch: 
+     inputs:
+       branch:
+          type: choice
+          options:
+               - 'develop-test'
+               - 'support-develop'
+               - 'support-hotfix'
+       target:
+          type: choice
+          options:
+               - 'application'
+               - 'framework'
+    
 jobs:
   my-job:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         platform: ['Android', 'iOS', 'React-Native']
-        repo: ['A', 'B', 'C', 'D', 'E']
-    steps:
-      - name: Print OS and Node Version
-        run: |
-          echo "Running on ${{ matrix.platform }} with Node.js version ${{ matrix.repo }}"        
+        repo: ['MVA10-Framework','MVA10-Foundation']
+    steps:      
+     - name: Split branches
+       run: |
+          branches="${{ inputs.branch }}"
+          branches_list=(${branches//-/ })
+          echo "source=${branches_list[0]}" >> $GITHUB_ENV
+          echo "target=${branches_list[1]}" >> $GITHUB_ENV
+          
+     - name: Run Action on
+       run: |
+          echo "${{ matrix.platform }}-${{ matrix.repo }} "   
+          echo " ${{env.source}} to  ${{env.target}}"
