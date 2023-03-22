@@ -9,7 +9,7 @@ on:
                - 'develop-test'
                - 'support-develop'
                - 'support-hotfix'
-       target:
+       target_type:
           type: choice
           options:
                - 'application'
@@ -19,7 +19,7 @@ on:
 jobs:
   frameworks:
     runs-on: ubuntu-latest
-    if: inputs.target == 'framework'
+    if: inputs.target_type == 'framework'
     strategy:
       matrix:
         platform: ['Android', 'iOS', 'React-Native']
@@ -38,7 +38,7 @@ jobs:
           echo " ${{env.source}} to ${{env.target}}"
   app:
     runs-on: ubuntu-latest
-    if: inputs.target == 'application' 
+    if: inputs.target_type == 'application' 
     strategy:
       matrix:
         platform: ['Android', 'iOS', 'React-Native']
