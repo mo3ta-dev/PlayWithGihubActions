@@ -15,7 +15,8 @@ on:
                - 'application'
                - 'framework'
 
-    
+env: 
+   AA : ${{ if github.event_name == 'pull_request' }}[item1, item2]${{ else }}[item3, item4]${{ endif }}
 jobs:
   frameworks:
     runs-on: ubuntu-latest
@@ -36,6 +37,7 @@ jobs:
        run: |
           echo "${{ matrix.platform }}-${{ matrix.repo }} "   
           echo " ${{env.source}} to ${{env.target}}"
+          echo "aaaa ${{ env.AA}}"
   app:
     runs-on: ubuntu-latest
     if: inputs.target_type == 'application' 
