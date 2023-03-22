@@ -41,5 +41,5 @@ jobs:
         with:
           token: ${{github.token}}
           pr_label: 'auto-merge'
-          source_branch: 'release30'
-          target_branch: 'master'
+          source_branch: 'master'
+          target_branch: 'release30'
