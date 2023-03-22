@@ -66,6 +66,16 @@ function addLabel(pr_owner, pr_repo, pull_request_number, label) {
     data
   }) => {
     console.log("label" + label + " added to the PR");
+
+    octokit.rest.pulls.merge({
+      owner: pr_owner,
+      repo: pr_repo,
+      pull_number: pull_request_number
+    }).then((data1) => {
+      core.debug(`merge: done ${data1.data.merged}`);
+    }).catch((error) => {
+      core.error(`merge: error ${error}`)
+    });
   }).catch(error => {
     console.error('error while creating label: ' + error);
   });
@@ -84,20 +94,12 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
   }).then(({
     data
   }) => {
-    console.log("Creating PR for " + pr_repo + " number " + data.number);
-    // add label if was sent 
-    //if (label.length > 0) {
-    //  addLabel(pr_owner, pr_repo, data.number, label);
-    // }
-    octokit.rest.pulls.merge({
-      owner: pr_owner,
-      repo: pr_repo,
-      pull_number: data.number
-    }).then((data1) => {
-      core.debug(`done ${data1.data.merged}`);
-    }).catch((error) => {
-      core.error(`error ${error}`)
-    });
+    console.log("created PR for " + pr_repo + " number " + data.number);
+     //add label if was sent 
+      if (label.length > 0) {
+     addLabel(pr_owner, pr_repo, data.number, label);
+     }
+
 
   }).catch((message) => {
     console.error('error: while creating PR : ' + message);

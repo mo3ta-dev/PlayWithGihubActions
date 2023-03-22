@@ -34,7 +34,7 @@ inputs:
   pr_label: 
     description: label to be added to pull request, default [blank]
     required: false 
-    default: ''
+    default: 'auto-merge'
     
 runs:
   using: 'node16'
