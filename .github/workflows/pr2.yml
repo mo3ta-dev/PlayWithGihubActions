@@ -27,8 +27,8 @@ on:
           
 permissions:
   pull-requests: write
-  contents: read
-  actions: read
+  contents: write
+  actions: write
 
 jobs:
   create-pull-request:
