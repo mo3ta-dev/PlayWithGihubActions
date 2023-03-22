@@ -86,35 +86,40 @@ async function openPR(pr_owner, pr_repo, head_branch, base_branch, body, title, 
   }) => {
     console.log("Creating PR for " + pr_repo + " number " + data.number);
     // add label if was sent 
-    if (label.length > 0) {
-      addLabel(pr_owner, pr_repo, data.number, label);
-    }
+    //if (label.length > 0) {
+    //  addLabel(pr_owner, pr_repo, data.number, label);
+    // }
+    octokit.rest.pulls.merge({
+      owner: pr_owner,
+      repo: pr_repo,
+      pull_number: data.number
+    }).then((data) => {}).catch((error) => {});
 
   }).catch((message) => {
     console.error('error: while creating PR : ' + message);
   });
 }
 
-function checkRequiredInputs(){
-  if(pr_source_target_branch){
+function checkRequiredInputs() {
+  if (pr_head_branch && pr_base_branch) {
+    return true
+  } else if (pr_source_target_branch) {
     const splitted = pr_source_target_branch.split("-");
     pr_head_branch = splitted[0];
     pr_base_branch = splitted[1];
-  }
-  else if (!pr_head_branch || !pr_base_branch){
+  } else {
     core.setFailed('please provide required inputs like [source_branch] [target_branch]')
-    return false; 
+    return false;
   }
-  return true; 
 }
 
-function main(){
+function main() {
   // use current repository
   let repoValue = repo;
   // if user provides another repository name, use it 
-  if (pr_repo_name){
+  if (pr_repo_name) {
     repoValue = pr_repo_name
-  } 
+  }
 
   if (use_matching_target_branches == 'true') {
     const allBranches = listBranches(owner, repoValue);
@@ -128,12 +133,14 @@ function main(){
     }).catch((error) => {
       console.error('error with listing ' + error);
     });
-  
+
   } else {
     openPR(owner, repoValue, pr_head_branch, pr_base_branch, pr_body, pr_title, pr_label);
   }
 }
 
-if (checkRequiredInputs()){
-  main(); 
+if (checkRequiredInputs()) {
+  main();
 }
+
+

@@ -1,38 +1,38 @@
 
-name: 'createAutoPR'
-description: 'an action that opens a pull request from one branch to another'
+name: create-auto-pr
+description: An action that opens a pull request from one branch to another
 inputs:
   token:
-    description: 'the token that will be used for the api call'
+    description: the token that will be used for the api call
     required: true  
   repo_name: 
-    description: "the name of the repository"
+    description: the name of the repository
     required: false
     default: ''
   source_target_branch: 
-    description: "the name of the source followed by target branch like 'develop-test'"
+    description: the name of the source followed by target branch like develop-test
     required: false
     default: ''  
   target_branch: 
-    description: "the name of the target/destination branch"
+    description: the name of the target/destination branch
     required: true 
   source_branch: 
-    description: "the name of the source/origin branch"
+    description: the name of the source/origin branch
     required: true 
   use_matching_target_branches: 
-    description: "allows pull requests to be raised to all matching branches starting with the target_branch name, default ['false']"  
+    description: allows pull requests to be raised to all matching branches starting with the target_branch name, default false
     required: false 
     default: 'false'
   pr_title: 
-    description: "title for pull request, default ['chore: [Auto-PR] source_branch to target_branch currentDate']" 
+    description: title for pull request, default chore [Auto-PR] source_branch to target_branch currentDate
     required: false 
     default: ''
   pr_body: 
-    description: "body of pull request, default ['chore: [Auto-PR]']"
+    description: body of pull request default chore [Auto-PR]
     required: false 
     default: 'chore: [Auto-PR]'
   pr_label: 
-    description: "label to be added to pull request, default ['']" 
+    description: label to be added to pull request, default [blank]
     required: false 
     default: ''
     
