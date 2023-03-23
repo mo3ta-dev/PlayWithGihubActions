@@ -45,4 +45,4 @@ jobs:
           pr_label: 'auto-merge'
           source_branch: 'test1'
           target_branch: 'master'
-          enable_auto_merge: true
+          enbale_auto_merge: true
