@@ -43,5 +43,6 @@ jobs:
         with:
           token: ${{github.token}}
           pr_label: 'auto-merge'
-          source_branch: 'master'
-          target_branch: 'main'
+          source_branch: 'test1'
+          target_branch: 'master'
+          enable_auto_merge: true
