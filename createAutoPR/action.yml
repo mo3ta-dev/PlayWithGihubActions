@@ -9,10 +9,6 @@ inputs:
     description: the name of the repository
     required: false
     default: ''
-  source_target_branch: 
-    description: the name of the source followed by target branch like develop-test
-    required: false
-    default: ''  
   target_branch: 
     description: the name of the target/destination branch
     required: true 
@@ -21,7 +17,7 @@ inputs:
     required: true 
   use_matching_target_branches: 
     description: allows pull requests to be raised to all matching branches starting with the target_branch name, default false
-    required: false 
+    required: false
     default: 'false'
   pr_title: 
     description: title for pull request, default chore [Auto-PR] source_branch to target_branch currentDate
@@ -34,8 +30,11 @@ inputs:
   pr_label: 
     description: label to be added to pull request, default [blank]
     required: false 
-    default: 'auto-merge'
-    
+    default: ''
+  enbale_auto_merge:
+    description: allow action to merge the pull request after creation of it
+    required: false 
+    default: false  
 runs:
   using: 'node16'
   main: 'dist/index.js'
