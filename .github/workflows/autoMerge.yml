@@ -15,9 +15,6 @@ on:
                - 'application'
                - 'framework'
                
-env:
-   app: ['MVA10']
-   frameworks: ['a', 'b']'
 
 jobs:
   frameworks:
@@ -26,7 +23,7 @@ jobs:
     strategy:
       matrix:
         platform: ['Android', 'iOS', 'React-Native']
-        repo: ${{env.app}}
+        repo: ['MVA10-Framework','MVA10-Foundation']
     steps:      
      - name: Split branches
        run: |
