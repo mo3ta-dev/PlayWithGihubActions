@@ -1,4 +1,4 @@
-name: my-workflow
+name: matix
 
 on: [workflow_dispatch]
 
