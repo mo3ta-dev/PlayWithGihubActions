@@ -1,0 +1,18 @@
+name: my-workflow
+
+on: [workflow_dispatch]
+
+env:
+  MY_MATRIX: '["a", "b"]'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ${{ fromJson(env.MY_MATRIX) }}
+        version: [1, 2, 3]
+    steps:
+      - name: Build and Test
+        run: |
+          echo "Running tests on ${{ matrix.os }} version ${{ matrix.version }}"
