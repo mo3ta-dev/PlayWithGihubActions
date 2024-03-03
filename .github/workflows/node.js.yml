@@ -35,6 +35,10 @@ jobs:
     - name: run build if exists
       run: npm run build --if-present
     - run: npm test
+    - name: set a env value 
+      run: | 
+        echo "DATA=45555" >> "$GITHUB_ENV"
+
 
  
   secrets: 
@@ -44,6 +48,10 @@ jobs:
     - name: display secret 
       run: | 
         echo ${{secrets.MY_APP_KEY}}
+
+    - name: print var    
+      run: | 
+        echo "data is $DATA"
 
   environment: 
     runs-on: macos-latest
