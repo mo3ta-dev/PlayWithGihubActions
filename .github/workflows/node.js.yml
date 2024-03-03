@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [14.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -32,3 +32,12 @@ jobs:
     - name: run build if exists
       run: npm run build --if-present
     - run: npm test
+
+ 
+  secrets: 
+    runs-on: macOs-latest
+    needs: build
+    steps:
+    - name: display secret 
+      run: | 
+        echo ${{secrets.MY_APP_KEY}}
