@@ -1,0 +1,13 @@
+name: By Team 
+
+
+on: 
+  pull_request: 
+
+
+
+
+jobs: 
+  check: 
+    runs-on: macOs-latest 
+  
