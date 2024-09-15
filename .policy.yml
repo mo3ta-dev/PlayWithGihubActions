@@ -1,1 +1,26 @@
+# the high level policy
+policy:
+  approval:
+    - or:
+      - maintainer
+      - billing
 
+# the list of rules
+approval_rules:
+  - name: maintainer 
+    requires:
+      count: 1
+      teams:
+        - "mo3ta-dev/maintainer"
+  - name: billing
+    if:
+      # any of files changed  
+      changed_files:
+        paths:
+          - "**/Payment/**"
+      has_author_in:
+        teams: ["mo3ta-dev/billing", "mo3ta-dev/purchase"]    
+    requires:
+      count: 1
+      teams:
+        - "mo3ta-dev/billing"
