@@ -1,5 +1,4 @@
-qwwsd sasqq
-sasas
+qwwsd 
 
 sasasas
 sasasasa
