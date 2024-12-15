@@ -15,7 +15,7 @@ jobs:
       - name: Get changed files
         id: changed-files
         run: |
-          git fetch origin master
+          git fetch origin main
           CHANGED_FILES=$(git diff --name-only origin/main)
           echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
 
