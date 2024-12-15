@@ -1,4 +1,4 @@
-name: By Team q
+name: By Team qq
 
 
 on: 
@@ -16,9 +16,12 @@ jobs:
         id: changed-files
         shell: bash
         run: |
-          echo "CHANGED_FILES=$CHANGED_FILES"
+          echo "start 1"
           git fetch origin main
+          echo "start 2"
           CHANGED_FILES=$(git diff --name-only origin/main)
+          echo "start 3"
+          echo "CHANGED_FILES=$CHANGED_FILES"
           echo "CHANGED_FILES=$CHANGED_FILES" >> GITHUB_ENV
 
       - name: Run Jest tests for related files
