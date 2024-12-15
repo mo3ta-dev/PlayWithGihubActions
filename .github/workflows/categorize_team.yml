@@ -30,7 +30,7 @@ jobs:
       - name: Run Jest tests for related files
         shell: bash
         env: 
-            ddd: changed-files.outputs.changed_files
+            ddd: $ {{steps.changed-files.outputs.changed_files}}
         run: |
           changed_files=${{env.ddd}}
           echo "$changed_files ,, $CHANGED_FILES"
