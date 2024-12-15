@@ -22,13 +22,15 @@ jobs:
           CHANGED_FILES=$(git diff --name-only origin/main)
           echo "start 3"
           echo "CHANGED_FILES=$CHANGED_FILES"
-          echo "CHANGED_FILES=$CHANGED_FILES" >> GITHUB_ENV
+          echo "changed_files=$CHANGED_FILES" >> GITHUB_OUTPUT
           echo "start 4"
           echo "data ${{env.GITHUB_ENV}}"
 
 
       - name: Run Jest tests for related files
         shell: bash
+        env: 
+            ddd: changed-files.outputs.changed_files
         run: |
-          changed_files=${{env.CHANGED_FILES}}
+          changed_files=${{env.ddd}}
           echo "$changed_files ,, $CHANGED_FILES"
