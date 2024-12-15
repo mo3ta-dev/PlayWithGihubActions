@@ -19,9 +19,10 @@ jobs:
           echo "CHANGED_FILES=$CHANGED_FILES"
           git fetch origin main
           CHANGED_FILES=$(git diff --name-only origin/main)
-          echo "CHANGED_FILES=$CHANGED_FILES"
+          echo "CHANGED_FILES=$CHANGED_FILES" >> GITHUB_ENV
 
       - name: Run Jest tests for related files
         shell: bash
         run: |
-          changed_files=$(echo $CHANGED_FILES)
+          changed_files=${{env.CHANGED_FILES}}
+          echo "$changed_files"
