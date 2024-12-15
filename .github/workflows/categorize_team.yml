@@ -1,4 +1,4 @@
-name: By Team qq
+name: By Team qqq
 
 
 on: 
@@ -23,9 +23,12 @@ jobs:
           echo "start 3"
           echo "CHANGED_FILES=$CHANGED_FILES"
           echo "CHANGED_FILES=$CHANGED_FILES" >> GITHUB_ENV
+          echo "start 4"
+          echo "data ${{env.GITHUB_ENV}}"
+
 
       - name: Run Jest tests for related files
         shell: bash
         run: |
           changed_files=${{env.CHANGED_FILES}}
-          echo "$changed_files"
+          echo "$changed_files ,, $CHANGED_FILES"
