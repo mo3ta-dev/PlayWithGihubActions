@@ -1,0 +1,5 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "nxCloudId": "6765d481fd338b0d382061d3"
+}
